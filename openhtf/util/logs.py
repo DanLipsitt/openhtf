@@ -197,7 +197,6 @@ def setup_logger():
   record_logger.addHandler(logging.StreamHandler(stream=sys.stdout))
 
   logger = logging.getLogger(LOGGER_PREFIX)
-  logger.propagate = False
   logger.setLevel(logging.DEBUG)
   formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
   if LOGFILE:
