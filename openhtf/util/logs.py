@@ -116,8 +116,7 @@ def initialize_record_logger(test_uid, test_record, notify_update):
   # All record loggers have a shared parent that's separately configured, so
   # we want to propagate to that logger.
   logger.propagate = True
-  # Just in case, make sure we don't have any extra handlers hanging around.
-  logger.handlers = [RecordHandler(test_record, notify_update)]
+  logger.addHandler(RecordHandler(test_record, notify_update))
   return logger
 
 
@@ -194,7 +193,6 @@ class RecordHandler(logging.Handler):
 def setup_logger():
   """Configure logging for OpenHTF."""
   record_logger = logging.getLogger(RECORD_LOGGER)
-  record_logger.propagate = False
   record_logger.setLevel(logging.DEBUG)
   record_logger.addHandler(logging.StreamHandler(stream=sys.stdout))
 
